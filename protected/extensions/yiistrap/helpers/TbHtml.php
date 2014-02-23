@@ -841,8 +841,8 @@ class TbHtml extends CHtml // required in order to access the protected methods 
         $label = TbArray::popValue('label', $htmlOptions, false);
         $labelOptions = TbArray::popValue('labelOptions', $htmlOptions, array());
         self::addCssClass('radio', $labelOptions);
-        $radioButton = parent::radioButton($name, $checked, $htmlOptions);
-        return $label !== false ? self::tag('label', $labelOptions, $radioButton . ' ' . $label) : $radioButton;
+        $input = parent::radioButton($name, $checked, $htmlOptions);
+        return self::createCheckBoxAndRadioButtonLabel($label, $input, $labelOptions);
     }
 
     /**
@@ -857,8 +857,8 @@ class TbHtml extends CHtml // required in order to access the protected methods 
         $label = TbArray::popValue('label', $htmlOptions, false);
         $labelOptions = TbArray::popValue('labelOptions', $htmlOptions, array());
         self::addCssClass('checkbox', $labelOptions);
-        $checkBox = parent::checkBox($name, $checked, $htmlOptions);
-        return $label !== false ? self::tag('label', $labelOptions, $checkBox . ' ' . $label) : $checkBox;
+        $input = parent::checkBox($name, $checked, $htmlOptions);
+        return self::createCheckBoxAndRadioButtonLabel($label, $input, $labelOptions);
     }
 
     /**
@@ -1004,8 +1004,7 @@ class TbHtml extends CHtml // required in order to access the protected methods 
             $htmlOptions['value'] = 1;
             $htmlOptions['id'] = $id = $baseID . '_all';
             $option = self::checkBox($id, $checkAll, $htmlOptions);
-            $label = self::label($checkAllLabel, $id, $labelOptions);
-            $item = $option . ' ' . $label;
+            $item = self::label($option . ' ' . $checkAllLabel, false, $labelOptions);
             if ($checkAllLast) {
                 $items[] = $item;
             } else {
@@ -1396,7 +1395,7 @@ EOD;
      * @return string the input.
      * @throws CException if the input type is invalid.
      */
-    protected static function createInput($type, $name, $value, $htmlOptions = array(), $data = array())
+    public static function createInput($type, $name, $value, $htmlOptions = array(), $data = array())
     {
         switch ($type) {
             case self::INPUT_TYPE_TEXT:
@@ -1612,9 +1611,9 @@ EOD;
     {
         $label = TbArray::popValue('label', $htmlOptions, false);
         $labelOptions = TbArray::popValue('labelOptions', $htmlOptions, array());
-        $radioButton = parent::activeRadioButton($model, $attribute, $htmlOptions);
         self::addCssClass('radio', $labelOptions);
-        return $label !== false ? self::tag('label', $labelOptions, $radioButton . ' ' . $label) : $radioButton;
+        $input = parent::activeRadioButton($model, $attribute, $htmlOptions);
+        return self::createCheckBoxAndRadioButtonLabel($label, $input, $labelOptions);
     }
 
     /**
@@ -1628,9 +1627,39 @@ EOD;
     {
         $label = TbArray::popValue('label', $htmlOptions, false);
         $labelOptions = TbArray::popValue('labelOptions', $htmlOptions, array());
-        $checkBox = parent::activeCheckBox($model, $attribute, $htmlOptions);
         self::addCssClass('checkbox', $labelOptions);
-        return $label !== false ? self::tag('label', $labelOptions, $checkBox . ' ' . $label) : $checkBox;
+        $input = parent::activeCheckBox($model, $attribute, $htmlOptions);
+        return self::createCheckBoxAndRadioButtonLabel($label, $input, $labelOptions);
+    }
+
+    /**
+     * Generates a label for a checkbox or radio input by wrapping the input.
+     * @param string $label the label text.
+     * @param string $input the input.
+     * @param array $htmlOptions additional HTML attributes.
+     * @return string the generated label.
+     */
+    protected static function createCheckBoxAndRadioButtonLabel($label, $input, $htmlOptions)
+    {
+        list ($hidden, $input) = self::normalizeCheckBoxAndRadio($input);
+        return $hidden . ($label !== false
+            ? self::tag('label', $htmlOptions, $input . ' ' . $label)
+            : $input);
+    }
+
+    /**
+     * Normalizes the inputs in the given string by splitting them up into an array.
+     * @param string $input the inputs.
+     * @return array an array with the following structure: array($hidden, $input)
+     */
+    protected static function normalizeCheckBoxAndRadio($input)
+    {
+        $parts = preg_split("/(<.*?>)/", $input, 2, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        if (isset($parts[1])) {
+            return $parts;
+        } else {
+            return array('', $parts[0]);
+        }
     }
 
     /**
@@ -1677,9 +1706,9 @@ EOD;
         parent::resolveNameID($model, $attribute, $htmlOptions);
         $selection = parent::resolveValue($model, $attribute);
         $name = TbArray::popValue('name', $htmlOptions);
-        $unCheck = TbArray::popValue('uncheckValue', $htmlOptions, '');
+        $uncheckValue = isset($htmlOptions['uncheckValue']) ? TbArray::popValue('uncheckValue', $htmlOptions) : '';
         $hiddenOptions = isset($htmlOptions['id']) ? array('id' => parent::ID_PREFIX . $htmlOptions['id']) : array('id' => false);
-        $hidden = $unCheck !== null ? parent::hiddenField($name, $unCheck, $hiddenOptions) : '';
+        $hidden = isset($uncheckValue) ? parent::hiddenField($name, $uncheckValue, $hiddenOptions) : '';
         return $hidden . self::radioButtonList($name, $selection, $data, $htmlOptions);
     }
 
@@ -1713,9 +1742,9 @@ EOD;
             parent::addErrorCss($htmlOptions);
         }
         $name = TbArray::popValue('name', $htmlOptions);
-        $unCheck = TbArray::popValue('uncheckValue', $htmlOptions, '');
+        $uncheckValue = isset($htmlOptions['uncheckValue']) ? TbArray::popValue('uncheckValue', $htmlOptions) : '';
         $hiddenOptions = isset($htmlOptions['id']) ? array('id' => parent::ID_PREFIX . $htmlOptions['id']) : array('id' => false);
-        $hidden = $unCheck !== null ? parent::hiddenField($name, $unCheck, $hiddenOptions) : '';
+        $hidden = isset($uncheckValue) ? parent::hiddenField($name, $uncheckValue, $hiddenOptions) : '';
         return $hidden . self::checkBoxList($name, $selection, $data, $htmlOptions);
     }
 
@@ -2107,7 +2136,7 @@ EOD;
      * @return string the input.
      * @throws CException if the input type is invalid.
      */
-    protected static function createActiveInput($type, $model, $attribute, $htmlOptions = array(), $data = array())
+    public static function createActiveInput($type, $model, $attribute, $htmlOptions = array(), $data = array())
     {
         switch ($type) {
             case self::INPUT_TYPE_TEXT:
@@ -2501,7 +2530,7 @@ EOD;
      * @param array $htmlOptions additional HTML attributes.
      * @return string the generated button.
      */
-    protected static function btn($type, $label, $htmlOptions = array())
+    public static function btn($type, $label, $htmlOptions = array())
     {
         self::addCssClass('btn', $htmlOptions);
         $color = TbArray::popValue('color', $htmlOptions);
@@ -2517,6 +2546,7 @@ EOD;
         }
         if (TbArray::popValue('disabled', $htmlOptions, false)) {
             self::addCssClass('disabled', $htmlOptions);
+            $htmlOptions['disabled'] = 'disabled';
         }
         $loading = TbArray::popValue('loading', $htmlOptions);
         if (!empty($loading)) {
@@ -3202,6 +3232,7 @@ EOD;
             $menuItem['active'] = TbArray::getValue('active', $tabOptions, false);
             $menuItem['disabled'] = TbArray::popValue('disabled', $tabOptions, false);
             $menuItem['linkOptions'] = TbArray::popValue('linkOptions', $tabOptions, array());
+            $menuItem['htmlOptions'] = TbArray::popValue('htmlOptions', $tabOptions, array());
             $items = TbArray::popValue('items', $tabOptions, array());
             if (!empty($items)) {
                 $menuItem['linkOptions']['data-toggle'] = 'dropdown';
@@ -4061,13 +4092,14 @@ EOD;
     {
         $htmlOptions['title'] = $title;
         if (TbArray::popValue('animation', $htmlOptions)) {
-            $htmlOptions['data-animation'] = true;
+            $htmlOptions['data-animation'] = 'true';
         }
         if (TbArray::popValue('html', $htmlOptions)) {
-            $htmlOptions['data-html'] = true;
+            $htmlOptions['data-html'] = 'true';
         }
-        if (TbArray::popValue('selector', $htmlOptions)) {
-            $htmlOptions['data-selector'] = true;
+        $selector = TbArray::popValue('selector', $htmlOptions);
+        if (!empty($selector)) {
+            $htmlOptions['data-selector'] = $selector;
         }
         $placement = TbArray::popValue('placement', $htmlOptions);
         if (!empty($placement)) {

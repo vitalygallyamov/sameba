@@ -10,7 +10,6 @@
 		<?php
 			$menuItems = array(
                 // array('label'=>'Главная', 'url'=>'/admin/start/index'),
-				array('label'=>'Настройки', 'url'=>'/admin/settings'),
 				array('label'=>'Страницы', 'url'=>'/admin/pages'),
 				array('label'=>'Меню', 'url'=>'#', 'items' => array(
 					array('label'=>'Список меню', 'url'=>"/admin/menuTypes/list"),
@@ -18,6 +17,7 @@
 					array('label'=>'Разделы меню', 'url'=>"/admin/menuItems/list"),
 					array('label'=>'Добавить раздел', 'url'=>"/admin/menuItems/create"),
 				)),
+				array('label'=>'Каталог', 'url'=>'/admin/catalog'),
 				array('label'=>'Категории', 'url'=>'/admin/categories'),
 				array('label'=>'Видео', 'url'=>'/admin/video'),
 				// array('label'=>'Разделы', 'url'=>'#', 'items' => array(
@@ -43,6 +43,7 @@
 					'class'=>'bootstrap.widgets.TbNav',
 					'htmlOptions'=>array('class'=>'pull-right'),
 					'items'=>array(
+						array('label'=>'Настройки', 'url'=>'/admin/settings'),
 						array('label'=>'Выйти', 'url'=>'/admin/user/logout'),
 					),
 				),
