@@ -57,7 +57,7 @@
 
 <?php
 
-$sc = Yii::app()->clientScript;
+$cs = Yii::app()->clientScript;
 
 $cs->registerScriptFile($this->getAssetsUrl().'/js/slider.js', CClientScript::POS_END);
 ?>
