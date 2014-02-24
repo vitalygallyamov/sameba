@@ -23,8 +23,12 @@ class FrontController extends Controller
     {
         //get all menu
         $menu_types = MenuTypes::model()->findAll();
-
         $this->renderPartial('//layouts/_menu', array('menu_types' => $menu_types));
+
+        //get all categories
+        $categories = Categories::model()->published()->findAll('parent=0');
+        $this->renderPartial('//layouts/_categories', array('categories' => $categories));
+
         return parent::beforeRender($view);
     }
 }

@@ -9,14 +9,7 @@
 	$cs->registerCoreScript('jquery');
 	// $cs->registerCoreScript('jquery.ui');
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/vendor/bootstrap.min.js', CClientScript::POS_END);
-	$cs->registerScriptFile($this->getAssetsUrl().'/js/slider.js', CClientScript::POS_END);
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/main.js', CClientScript::POS_END);
-	//$cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.fancybox-buttons.js', CClientScript::POS_END);
-	//$cs->registerScriptFile('http://api-maps.yandex.ru/2.0.27/?load=package.standard&lang=ru-RU', CClientScript::POS_HEAD);
-	
-	// $cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.timepicker.addon.js', CClientScript::POS_END);
-	// $cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.ui.timepicker.ru.js', CClientScript::POS_END);
-	// $cs->registerScriptFile($this->getAssetsUrl().'/js/common.js', CClientScript::POS_END);
 
 ?><!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -40,24 +33,7 @@
                 <div class="logo"><a href="/"><img src="<?=$this->getAssetsUrl()?>/img/logo.png" alt=" " ></a></div>
                 <span class="phone"><i class="red-icon"></i> +7 3452 700 899</span>
                 <nav>
-                    <ul class="categories">
-                        <li class="root"><a href="#">Двери</a></li>
-                        <li class="root"><a href="#">Лестницы</a></li>
-                        <li class="root"><a href="#">Item 3</a></li>
-                        <li class="root sub">
-                            <a href="#">Кухни</a>
-                            <ul class="sub-categories">
-                                <li><a href="#">Классика</a></li>
-                                <li><a href="#">Item 2</a></li>
-                                <li><a href="#">Item 3</a></li>
-                                <li><a href="#">Item 4</a></li>
-                            </ul>
-                        </li>
-                        <li class="root"><a href="#">Item 5</a></li>
-                        <li class="root"><a href="#">Item 6</a></li>
-                        <li class="root"><a href="#">Item 7</a></li>
-                        <li class="root"><a href="#">Item 8</a></li>
-                    </ul>
+                    <?php if(!empty($this->clips['categories'])) echo $this->clips['categories']; ?>
                 </nav>
 
                 <nav class="right-menu">
