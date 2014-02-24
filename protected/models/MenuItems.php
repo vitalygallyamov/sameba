@@ -20,6 +20,12 @@ class MenuItems extends EActiveRecord
         return '{{menu_items}}';
     }
 
+    public function defaultScope()
+    {
+        return array(
+            'condition' => "status=1"
+        );
+    }
 
     public function rules()
     {

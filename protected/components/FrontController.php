@@ -21,7 +21,10 @@ class FrontController extends Controller
 
     public function beforeRender($view)
     {
-        $this->renderPartial('//layouts/clips/_main_menu');
+        //get all menu
+        $menu_types = MenuTypes::model()->findAll();
+
+        $this->renderPartial('//layouts/_menu', array('menu_types' => $menu_types));
         return parent::beforeRender($view);
     }
 }

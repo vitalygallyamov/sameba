@@ -14,7 +14,7 @@ return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'name'=>'Sameba',
     'language' => 'ru',
-    'theme'=>'default',
+    'theme'=>'sameba',
     // preloading 'log' component
     'preload'=>array('log'),
 

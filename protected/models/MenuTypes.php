@@ -15,7 +15,6 @@ class MenuTypes extends EActiveRecord
         return '{{menu_types}}';
     }
 
-
     public function rules()
     {
         return array(
@@ -30,6 +29,7 @@ class MenuTypes extends EActiveRecord
     public function relations()
     {
         return array(
+            'items' => array(self::HAS_MANY, 'MenuItems', 'menu_id')
         );
     }
 
