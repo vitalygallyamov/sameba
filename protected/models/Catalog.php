@@ -80,11 +80,17 @@ class Catalog extends EActiveRecord
 				'idAttribute' => 'gllr_gallery',
 				'versions' => array(
 					'small' => array(
-						'adaptiveResize' => array(90, 90),
+						'adaptiveResize' => array(100, 70),
 					),
-					'medium' => array(
-						'resize' => array(600, 500),
-					)
+                    'middle' => array(
+                        'adaptiveResize' => array(300, 300),
+                    ),
+					'big' => array(
+						'resize' => array(1000, 1000),
+					),
+                    'xbig' => array(
+                        'resize' => array(1500, 1500),
+                    ),
 				),
 				'name' => true,
 				'description' => true,
@@ -134,5 +140,33 @@ class Catalog extends EActiveRecord
         return 'Каталог';
     }
 
+    //from materials table
+    public function getMaterials(){
+        if(!$this->materials)
+            return '';
 
+        $m = explode(',', $this->materials);
+
+        $criteria = new CDbCriteria;
+        $criteria->addInCondition('id', $m);
+
+        $data = Materials::model()->findAll($criteria);
+
+        return $data;
+    }
+
+    //from places table
+    public function getPlaces(){
+        if(!$this->places)
+            return '';
+
+        $m = explode(',', $this->places);
+
+        $criteria = new CDbCriteria;
+        $criteria->addInCondition('id', $m);
+
+        $data = Places::model()->findAll($criteria);
+
+        return $data;
+    }
 }

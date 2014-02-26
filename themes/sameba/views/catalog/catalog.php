@@ -20,10 +20,10 @@ $cs->registerCssFile($this->getAssetsUrl().'/js/vendor/fancybox/jquery.fancybox.
 
                 if($category->children){
                     $sub_cats = $category->children;
-                    $rootlink = $this->createUrl('catalog/view', array('category'=>$category->alias));
+                    $rootlink = $this->createUrl('view', array('category'=>$category->alias));
                 }elseif($category->cat_parent){
                     $sub_cats = $category->cat_parent->children;
-                    $rootlink = $this->createUrl('catalog/view', array('category'=>$category->cat_parent->alias));
+                    $rootlink = $this->createUrl('view', array('category'=>$category->cat_parent->alias));
                 }
                 ?>
 

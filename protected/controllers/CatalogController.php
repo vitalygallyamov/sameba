@@ -29,6 +29,12 @@ class CatalogController extends FrontController
 	//view all catalog or one item from catalog
 	public function actionView($category, $alias='')
 	{
+		$data = Catalog::model()->published()->findAll();
+		$cat = Categories::model()->published()->find('alias=:alias', array(':alias' => $category));
+
+		if(!$cat)
+			throw new CHttpException(404,'Страница не найдена');
+
 		if($alias) {
 			$model = null;
 
@@ -38,15 +44,9 @@ class CatalogController extends FrontController
 				$model = Catalog::model()->published()->find('alias=:alias', array(':alias' => $alias));
 
 			if($model)
-				$this->render('item', array('model' => $model));
+				$this->render('item', array('model' => $model, 'category' => $cat));
 			return;
 		}
-
-		$data = Catalog::model()->published()->findAll();
-		$cat = Categories::model()->published()->find('alias=:alias', array(':alias' => $category));
-
-		if(!$cat)
-			throw new CHttpException(404,'Страница не найдена');
 
 		$this->render('catalog',array(
 			'data'=>$data,

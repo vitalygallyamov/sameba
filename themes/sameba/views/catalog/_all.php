@@ -10,7 +10,7 @@
     <? $count++; }?>
     <?foreach ($data as $item) {?>
         <div class="col-sm-4">
-            <a href="#"><img src="img/tmp/item1.png" alt=""></a>
+            <a href="<?=$this->createUrl('view', array('category' => $category->alias, 'alias' => $item->alias))?>"><img src="<?=$item->gallery->main->getUrl('middle')?>" alt=""></a>
             <div class="desc">
                 <a href="<?=$this->createUrl('view', array('category' => $category->alias, 'alias' => $item->alias))?>" class="view"></a>
                 <div class="id"><?=CHtml::encode($item->art_id)?></div>
