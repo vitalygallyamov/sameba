@@ -27,11 +27,31 @@ class PagesController extends FrontController
 	}
 
 	
-	public function actionView($id)
+	public function actionView($alias)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel('Pages', $id),
-		));
+		$model = null;
+
+		if(is_int($alias))
+			$model = Pages::model()->findByPk($alias);
+		else
+			$model = Pages::model()->find('alias=:alias', array(':alias' => $alias));
+
+		if(!$model)
+			throw new CHttpException(404, 'Unable to find the requested object.');
+
+
+		if($alias == 'contacts'){
+
+			$places = Places::model()->withCoords()->findAll();
+			$this->render('contacts',array(
+				'model'=>$model,
+				'places' => $places
+			));
+		}else
+			$this->render('view',array(
+				'model'=>$model,
+			));
+		
 	}
 
 	

@@ -20,9 +20,20 @@ class Places extends EActiveRecord
     {
         return array(
             array('name', 'required'),
+            array('sort', 'numerical', 'integerOnly'=>true),
             array('name, coords', 'length', 'max'=>255),
             // The following rule is used by search().
-            array('id, name, coords', 'safe', 'on'=>'search'),
+            array('id, name, coords, sort', 'safe', 'on'=>'search'),
+        );
+    }
+
+    public function scopes()
+    {
+        return array(
+            'withCoords'=>array(
+                'condition'=>'coords!=""',
+                'order'=>'sort'
+            )
         );
     }
 
@@ -40,6 +51,7 @@ class Places extends EActiveRecord
             'id' => 'ID',
             'name' => 'Название',
             'coords' => 'Координаты',
+            'sort' => 'Вес для сортировки'
         );
     }
 
@@ -49,7 +61,9 @@ class Places extends EActiveRecord
         $criteria=new CDbCriteria;
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('coords',$this->coords,true);
+        $criteria->compare('coords',$this->coords,true);
+		$criteria->compare('coords',$this->sort);
+        $criteria->order='sort';
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
         ));

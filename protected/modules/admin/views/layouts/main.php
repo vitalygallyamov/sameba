@@ -20,6 +20,7 @@
 				array('label'=>'Каталог', 'url'=>'/admin/catalog'),
 				array('label'=>'Категории', 'url'=>'/admin/categories'),
 				array('label'=>'Видео', 'url'=>'/admin/video'),
+				array('label'=>'Магазины', 'url'=>'/admin/places'),
 				// array('label'=>'Разделы', 'url'=>'#', 'items' => array(
 					// array('label'=>'Пример', 'url'=>'#', 'items' => array(
 					// 	array('label'=>'Создать', 'url'=>"/admin/brands/create"),

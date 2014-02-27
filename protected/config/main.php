@@ -73,6 +73,7 @@ return array(
             'rules'=>array(
                 'gii'=>'gii',
                 'admin'=>'admin/start/index',
+                'pages/<alias:[-_a-z]+|\d+>'=>'pages/view',
                 'catalog/<category:[-_a-z]+>/<alias:[-_a-z]+|\d+>'=>'catalog/view',
                 'catalog/<category:[-_a-z]+>'=>'catalog/view',
                 '<controller:\w+>'=>'<controller>/index',

@@ -1,12 +1,8 @@
-<?php
-$this->breadcrumbs=array(
-	'Pages'=>array('index'),
-	$model->title,
-);
+<section class="page">
+	<h1><?=CHtml::encode($model->title)?></h1>
+</section>
 
-<h1>View Pages #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+<?php /*$this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
@@ -19,4 +15,4 @@ $this->breadcrumbs=array(
 		'create_time',
 		'update_time',
 	),
-)); ?>
+)); */?>

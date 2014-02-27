@@ -15,7 +15,7 @@
 
 		var coords = [],
 		myCollection = new ymaps.GeoObjectCollection({}, {
-			iconImageHref: '/verstka/sameba/img/point.png',
+			iconImageHref: jQuery('.contacts').data('point-img'),
 			iconImageSize: [37, 42]
 		});
 
