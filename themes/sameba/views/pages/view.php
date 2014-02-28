@@ -1,18 +1,12 @@
 <section class="page">
-	<h1><?=CHtml::encode($model->title)?></h1>
+	<div class="row">
+		<div class="span12">
+			<h1><?=CHtml::encode($model->title)?></h1>
+		</div>
+	</div>
+	<div class="desc row">
+		<div class="span12">
+			<?=$model->wswg_body?>
+		</div>
+	</div>
 </section>
-
-<?php /*$this->widget('bootstrap.widgets.TbDetailView',array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'title',
-		'alias',
-		'wswg_body',
-		'seo_id',
-		'status',
-		'sort',
-		'create_time',
-		'update_time',
-	),
-)); */?>

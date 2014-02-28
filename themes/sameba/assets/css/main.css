@@ -444,7 +444,7 @@ a, a:hover{
 	font-size: 25px;
 	font-family: "robotothin";
 }
-.item-info .desc{
+.item-info .desc, .page .desc{
 	margin-top: 15px;
 	font-size: 16px;
 	font-family: "robotothin";

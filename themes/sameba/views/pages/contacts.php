@@ -11,8 +11,8 @@ $cs->registerScriptFile($this->getAssetsUrl().'/js/map.js', CClientScript::POS_E
     </div>
     <div class="info">
         <h1><?=CHtml::encode($model->title)?></h1>
-        <div class="item phone"><i></i>+7 3452 700 899</div>
-        <div class="item email"><i></i>mail@sameba.ru</div>
+        <div class="item phone"><i></i><?=Settings::getValue('phone')?></div>
+        <div class="item email"><i></i><?=Settings::getValue('email')?></div>
         <div class="socials">
             <a href="#" class="fb"></a>
             <a href="#" class="vk"></a>

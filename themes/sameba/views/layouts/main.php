@@ -31,7 +31,7 @@
 			 </div>
             <div class="nav-container">
                 <div class="logo"><a href="/"><img src="<?=$this->getAssetsUrl()?>/img/logo.png" alt=" " ></a></div>
-                <span class="phone"><i class="red-icon"></i> +7 3452 700 899</span>
+                <span class="phone"><i class="red-icon"></i> <?=Settings::getValue('phone')?></span>
                 <nav>
                     <?php if(!empty($this->clips['categories'])) echo $this->clips['categories']; ?>
                 </nav>
