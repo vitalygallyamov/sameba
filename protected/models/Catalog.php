@@ -32,7 +32,7 @@ class Catalog extends EActiveRecord
     public function rules()
     {
         return array(
-            array('gllr_gallery, category_id, seo_id, period, status, sort', 'numerical', 'integerOnly'=>true),
+            array('gllr_gallery, category_id, seo_id, period, status, sort, on_main', 'numerical', 'integerOnly'=>true),
             array('name, alias, art_id, materials, places', 'length', 'max'=>255),
             array('price', 'length', 'max'=>10),
             array('wswg_desc, create_time, update_time', 'safe'),
@@ -41,10 +41,20 @@ class Catalog extends EActiveRecord
         );
     }
 
+    public function scopes()
+    {
+        return array_merge(array(
+            'on_main' => array(
+                'condition' => 't.on_main=1',
+            )), parent::scopes()
+        );
+    }
+
 
     public function relations()
     {
         return array(
+            'category' => array(self::BELONGS_TO, 'Categories', 'category_id')
         );
     }
 
@@ -66,6 +76,7 @@ class Catalog extends EActiveRecord
             'places' => 'Где купить',
             'status' => 'Статус',
             'sort' => 'Вес для сортировки',
+            'on_main' => 'Показывать на главной',
             'create_time' => 'Дата создания',
             'update_time' => 'Дата последнего редактирования',
         );
@@ -79,6 +90,9 @@ class Catalog extends EActiveRecord
 				'class' => 'appext.imagesgallery.GalleryBehavior',
 				'idAttribute' => 'gllr_gallery',
 				'versions' => array(
+                    'mini' => array(
+                        'adaptiveResize' => array(180, 100),
+                    ),
 					'small' => array(
 						'adaptiveResize' => array(100, 70),
 					),

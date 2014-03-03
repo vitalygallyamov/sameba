@@ -1,3 +1,28 @@
+<section class="main-page">
+    <?foreach ($items as $key => $item):?>
+    <div class="front-block n<=$key?>" style="background-image: url('<?=$item->gallery->main->getUrl('xbig')?>');">
+        <div class="product-info">
+            <h1><?=CHtml::encode($item->name)?></h1>
+            <div class="desc">
+                <?=$item->wswg_desc?>
+            </div>
+            <div class="price">От <?=CHtml::encode(number_format($item->price, 0, '', ' '))?> руб.</div>
+            <a href="<?=Yii::app()->createUrl('catalog/view', array('category' => $item->category->alias, 'alias' => $item->alias))?>" class="view">подробнее</a>
+        </div>
+    </div>
+    <?endforeach;?>
+    <div class="main-page-nav">
+        <?foreach ($items as $key => $item):?>
+        <div class="item">
+            <img src="<?=$item->gallery->main->getUrl('mini')?>" alt="">
+            <div class="info">
+                <div class="title"><?=CHtml::encode($item->name)?></div>
+            </div>
+        </div>
+        <?endforeach;?>
+    </div>
+</section>
+<?/*
 <div class="slider-wrap">
     <div class="slider-images">
         <img src="<?=$this->getAssetsUrl()?>/img/slide1.jpg" alt="">
@@ -54,7 +79,7 @@
         </div>
     </div>
 </div>
-
+*/?>
 <?php
 
 $cs = Yii::app()->clientScript;

@@ -15,7 +15,7 @@
 
 	<?php echo $form->textAreaControlGroup($model,'desc',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
-	<?php //echo $form->textFieldControlGroup($model,'video_image',array('class'=>'span8 preview','maxlength'=>255)); ?>
+	<?php echo $form->dropDownListControlGroup($model, 'on_main', array(0 => 'Нет', 1 => 'Да'), array('class'=>'span8', 'displaySize'=>1)); ?>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', Video::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
 	<script>

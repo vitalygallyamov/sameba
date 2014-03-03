@@ -29,7 +29,9 @@ class SiteController extends FrontController
 	 */
 	public function actionIndex()
 	{
-		$this->render('index');
+		$items = Catalog::model()->published()->on_main()->findAll();
+
+		$this->render('index', array('items' => $items));
 	}
 
 	/**

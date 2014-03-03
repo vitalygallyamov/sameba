@@ -28,7 +28,7 @@ $this->menu=array(
 		array(
 			'name'=>'status',
 			'type'=>'raw',
-			'value'=>'Catalog::getStatusAliases($data->status)',
+			'value'=>array($this,'gridStatus'),
 			'filter'=>Catalog::getStatusAliases()
 		),
 		/*'sort',

@@ -1,6 +1,17 @@
 (function ( $ ) {
 
-	//init vars
+	var main_slides = $('.main-page-nav .item');
+
+	//hover
+	main_slides.hover(function(){
+		var $this = $(this);
+		$this.find('.info').show();
+	},function (){
+		var $this = $(this);
+		$this.find('.info').hide();
+	});
+
+/*	//init vars
 	var time = 5000,
 		timeId = null,
 		curSlide = -1,
@@ -99,6 +110,6 @@
 	start();
 
 	//vertical align .slider-nav block
-	$navBlock.css({marginTop: ($doc.height() - $navBlock.height()) / 2});
+	$navBlock.css({marginTop: ($doc.height() - $navBlock.height()) / 2});*/
 
 })(jQuery);

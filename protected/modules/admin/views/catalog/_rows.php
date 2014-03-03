@@ -66,6 +66,8 @@
 
 	<?php echo $form->textFieldControlGroup($model,'period',array('class'=>'span8')); ?>
 
+	<?php echo $form->dropDownListControlGroup($model, 'on_main', array(0 => 'Нет', 1 => 'Да'), array('class'=>'span8', 'displaySize'=>1)); ?>
+
 	<?php echo $form->dropDownListControlGroup($model, 'status', Catalog::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
 
 	<script>

@@ -56,20 +56,5 @@
 			// margin      : 50,
 		});
 	}
-
-	//filter
-	if(jQuery('.top-menu').length){
-		jQuery('.top-menu a').on('click', function(e){
-			e.preventDefault();
-
-			var $this = jQuery(this),
-				all = jQuery('.top-menu li');
-
-			if(!$this.parent().hasClass('active'))
-				all.find('.active').removeClass('active');
-
-			$this.parent().addClass('active');
-		});
-	}
 	
 })(jQuery);
