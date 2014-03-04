@@ -11,6 +11,7 @@
 		$this.find('.info').removeClass('hover');
 	});
 
+	//
 	main_slides.on('click', function(){
 		var $this = $(this),
 			index = main_slides.index($this),
@@ -24,7 +25,8 @@
 
 		if(players.length){
 			for(p in players){
-				players[p].video.pauseVideo();
+				if(players[p].ready)
+					players[p].video.stopVideo();
 			}
 			$fronts.find('.video').hide();
 			$fronts.find('.play').show();
@@ -34,15 +36,17 @@
 	//play video button
 	jQuery('.play').on('click', function(){
 		var $this = jQuery(this),
-			id = $this.data('id'),
+			id = $this.data('videoid'),
 			$front = $this.closest('.front-block');
 
 		if(players.length){
 			for(i in players){
 				if(players[i].id == id){
-					players[i].video.playVideo();
 					$front.find('.video').show();
 					$front.find('.play').hide();
+					
+					if(players[i].ready)
+						players[i].video.playVideo();
 				}
 			}
 		}
@@ -154,7 +158,7 @@
 var players = [];
 
 function onYouTubeIframeAPIReady() {
-	console.log('as');
+	// console.log('as');
 
 	jQuery('.play').each(function(){
 		var $this = jQuery(this),
@@ -165,18 +169,32 @@ function onYouTubeIframeAPIReady() {
 		var main_page_w = jQuery('.main-page').width(),
 			navH = jQuery('.main-page-nav').height();
 
-		players.push({id: id, video: new YT.Player('video-' + id, {
-			height: dH - navH,
-			width: main_page_w,
-			videoId: videoid,
-			events: {
-				'onReady': onPlayerReady
-				// 'onStateChange': onPlayerStateChange
-			}
-		})});
+		players.push({id: videoid, video: new YT.Player('video-' + videoid, {
+				height: dH - navH,
+				width: main_page_w,
+				videoId: videoid,
+				events: {
+					'onReady': onPlayerReady
+					// 'onStateChange': onPlayerStateChange
+				}
+			}),
+			ready: false
+		});
+		/*setTimeout(function(){
+			$('.front-block .video').css('display','none');
+		}, 1000);*/
+		// $('.front-block .video').css('display','none');
 	});
 }
 
 function onPlayerReady(event) {
-	//event.target.playVideo();
+	var data = event.target.getVideoData();
+		// code = event.target.getVideoEmbedCode();
+
+	for(i in players){
+		if(players[i].id == data.video_id)
+			players[i].ready = true;
+	}
+
+	event.target.playVideo();
 }
