@@ -91,7 +91,7 @@ class Catalog extends EActiveRecord
 				'idAttribute' => 'gllr_gallery',
 				'versions' => array(
                     'mini' => array(
-                        'adaptiveResize' => array(180, 100),
+                        'adaptiveResize' => array(240, 100),
                     ),
 					'small' => array(
 						'adaptiveResize' => array(100, 70),
@@ -182,5 +182,12 @@ class Catalog extends EActiveRecord
         $data = Places::model()->findAll($criteria);
 
         return $data;
+    }
+
+    public static function onMainList(){
+        return array(
+            0 => 'Нет',
+            1 => 'Да'
+        );
     }
 }

@@ -29,7 +29,21 @@ class SiteController extends FrontController
 	 */
 	public function actionIndex()
 	{
-		$items = Catalog::model()->published()->on_main()->findAll();
+		$criteria = new CDbCriteria;
+		$criteria->limit = 3;
+
+		$videos = Video::model()->published()->on_main()->findAll($criteria);
+
+		$criteria->limit = 6 - count($videos);
+
+		$catalog = Catalog::model()->published()->on_main()->findAll($criteria);
+
+		$items = array();
+
+		foreach ($videos as $v) $items[] = $v;
+		foreach ($catalog as $c) $items[] = $c;
+
+		shuffle($items);
 
 		$this->render('index', array('items' => $items));
 	}

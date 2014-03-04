@@ -26,6 +26,13 @@ $this->menu=array(
 		// 'seo_id',
 		'period',
 		array(
+			'name'=>'on_main',
+			'type'=>'raw',
+			'value'=>array($this,'gridOnMain'),
+			'filter'=>Catalog::onMainList()
+		),
+		array(
+			'header' => 'Активность',
 			'name'=>'status',
 			'type'=>'raw',
 			'value'=>array($this,'gridStatus'),

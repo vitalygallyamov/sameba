@@ -25,11 +25,17 @@ $this->menu=array(
 		),
 		'name',
 		// 'video_id',
-		
 		array(
+			'name'=>'on_main',
+			'type'=>'raw',
+			'value'=>array($this,'gridOnMain'),
+			'filter'=>Catalog::onMainList()
+		),
+		array(
+			'header' => 'Активность',
 			'name'=>'status',
 			'type'=>'raw',
-			'value'=>'Video::getStatusAliases($data->status)',
+			'value'=>array($this,'gridStatus'),
 			'filter'=>Video::getStatusAliases()
 		),
 		/*'sort',

@@ -61,7 +61,7 @@ a, a:hover{
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	background-color: #000;
+	background-color: rgba(4,4,4, 0.6);
 }
 .main-page-nav .item{
 	width: 16.66363%;
@@ -71,6 +71,7 @@ a, a:hover{
 	position: relative;
 	overflow: hidden;
 	text-align: center;
+	background-size: cover;
 }
 .main-page-nav .info{
 	display: none;
@@ -86,16 +87,35 @@ a, a:hover{
 	top: 0;
 	left: 0;
 }
+.main-page-nav .info.active, .main-page-nav .info.hover{
+	display: block;
+}
 .main-page-nav .title{
 	margin-top: 16%;
 	padding: 0 20px 0 10px;
 	text-align: left;
 	background: no-repeat 95% center url('../img/photo_arrow.png');
 }
+.main-page-nav .title.video{
+	height: 27px;
+	background: no-repeat 95% center url('../img/video_icon.png');
+}
 .front-block{
 	height: 100%;
 	background-size: cover;
 	position: relative;
+}
+.front-block .video{
+	display: none;
+}
+.front-block .play{
+	position: absolute;
+	top: 43%;
+	left: 45%;
+	width: 106px;
+	height: 75px;
+	background: no-repeat center url('../img/play.png');
+	cursor: pointer;
 }
 .front-block .product-info{
 	background: #121212;

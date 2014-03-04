@@ -27,7 +27,7 @@ class Video extends EActiveRecord
         return array(
             array('video_id', 'required'),
             array('status, sort, on_main', 'numerical', 'integerOnly'=>true),
-            array('name, video_id, video_image, url', 'length', 'max'=>255),
+            array('name, video_id, video_image, url, img_video', 'length', 'max'=>255),
             array('desc, create_time, update_time', 'safe'),
             // The following rule is used by search().
             array('id, name, video_id, desc, video_image, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
@@ -41,6 +41,14 @@ class Video extends EActiveRecord
         );
     }
 
+    public function scopes()
+    {
+        return array_merge(array(
+            'on_main' => array(
+                'condition' => 't.on_main=1',
+            )), parent::scopes()
+        );
+    }
 
     public function attributeLabels()
     {
@@ -54,6 +62,7 @@ class Video extends EActiveRecord
             'status' => 'Статус',
             'sort' => 'Вес для сортировки',
             'on_main' => 'Показывать на главной',
+            'img_video' => 'Обложка',
             'create_time' => 'Дата создания',
             'update_time' => 'Дата последнего редактирования',
         );
@@ -63,6 +72,27 @@ class Video extends EActiveRecord
     public function behaviors()
     {
         return CMap::mergeArray(parent::behaviors(), array(
+            'imgBehaviorVideo' => array(
+                'class' => 'application.behaviors.UploadableImageBehavior',
+                'attributeName' => 'img_video',
+                'versions' => array(
+                    'mini' => array(
+                        'adaptiveResize' => array(240, 100),
+                    ),
+                    'small' => array(
+                        'adaptiveResize' => array(100, 70),
+                    ),
+                    'middle' => array(
+                        'adaptiveResize' => array(300, 300),
+                    ),
+                    'big' => array(
+                        'resize' => array(1000, 1000),
+                    ),
+                    'xbig' => array(
+                        'resize' => array(1500, 1500),
+                    ),
+                ),
+            ),
         	'CTimestampBehavior' => array(
 				'class' => 'zii.behaviors.CTimestampBehavior',
                 'createAttribute' => 'create_time',

@@ -1,24 +1,41 @@
 <section class="main-page">
     <?foreach ($items as $key => $item):?>
-    <div class="front-block n<=$key?>" style="background-image: url('<?=$item->gallery->main->getUrl('xbig')?>');">
-        <div class="product-info">
-            <h1><?=CHtml::encode($item->name)?></h1>
-            <div class="desc">
-                <?=$item->wswg_desc?>
+        <?if($item instanceof Catalog):?>
+        <div class="front-block n<?=$key?>" style="background-image: url('<?=$item->gallery->main->getUrl('xbig')?>');<?=($key != 0 ? ' display: none;' : '')?>">
+            <div class="product-info">
+                <h1><?=CHtml::encode($item->name)?></h1>
+                <div class="desc">
+                    <?=$item->wswg_desc?>
+                </div>
+                <div class="price">От <?=CHtml::encode(number_format($item->price, 0, '', ' '))?> руб.</div>
+                <a href="<?=Yii::app()->createUrl('catalog/view', array('category' => $item->category->alias, 'alias' => $item->alias))?>" class="view">подробнее</a>
             </div>
-            <div class="price">От <?=CHtml::encode(number_format($item->price, 0, '', ' '))?> руб.</div>
-            <a href="<?=Yii::app()->createUrl('catalog/view', array('category' => $item->category->alias, 'alias' => $item->alias))?>" class="view">подробнее</a>
         </div>
-    </div>
+        <?endif;?>
+        <?if($item instanceof Video):?>
+        <div class="front-block n<=$key?>" style="background-image: url('<?=$item->getImageUrl('xbig')?>');<?=($key != 0 ? ' display: none;' : '')?>">
+            <div class="video"><div id="video-<?=$item->id?>"></div></div>
+            <div class="play" data-id="<?=$item->id?>" data-videoid="<?=$item->video_id?>"></div>
+        </div>
+        <?endif;?>
     <?endforeach;?>
     <div class="main-page-nav">
         <?foreach ($items as $key => $item):?>
-        <div class="item">
-            <img src="<?=$item->gallery->main->getUrl('mini')?>" alt="">
-            <div class="info">
-                <div class="title"><?=CHtml::encode($item->name)?></div>
+            <?if($item instanceof Catalog):?>
+            <div class="item">
+                <img src="<?=$item->gallery->main->getUrl('mini')?>" alt="">
+                <div class="info<?=($key == 0 ? ' active' : '')?>">
+                    <div class="title"><?=CHtml::encode($item->name)?></div>
+                </div>
             </div>
-        </div>
+            <?endif;?>
+            <?if($item instanceof Video):?>
+            <div class="item video" style="background-image: url('<?=$item->getImageUrl('mini')?>');>">
+                <div class="info<?=($key == 0 ? ' active' : '')?>">
+                    <div class="title video"><?=CHtml::encode($item->name)?></div>
+                </div>
+            </div>
+            <?endif;?>
         <?endforeach;?>
     </div>
 </section>
@@ -85,4 +102,7 @@
 $cs = Yii::app()->clientScript;
 
 $cs->registerScriptFile($this->getAssetsUrl().'/js/slider.js', CClientScript::POS_END);
+$cs->registerScriptFile('https://www.youtube.com/iframe_api', CClientScript::POS_END);
+//http://www.youtube.com/apiplayer?enablejsapi=1&version=3
+
 ?>

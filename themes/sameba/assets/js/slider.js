@@ -5,12 +5,44 @@
 	//hover
 	main_slides.hover(function(){
 		var $this = $(this);
-		$this.find('.info').show();
+		$this.find('.info').addClass('hover');
 	},function (){
 		var $this = $(this);
-		$this.find('.info').hide();
+		$this.find('.info').removeClass('hover');
 	});
 
+	main_slides.on('click', function(){
+		var $this = $(this),
+			index = main_slides.index($this),
+			$fronts = jQuery('.front-block');
+
+		$('.main-page-nav .info.active').removeClass('active');
+		$this.find('.info').addClass('active');
+
+		$fronts.filter(':visible').hide();
+		$fronts.eq(index).show();
+
+		if(players.length){
+			for(p in players){
+				players[p].pauseVideo();
+			}
+			$fronts.find('.video').hide();
+			$fronts.find('.play').show();
+		}
+	});
+
+	//play video button
+	jQuery('.play').on('click', function(){
+		var $this = jQuery(this),
+			id = $this.data('id'),
+			$front = $this.closest('.front-block');
+
+		if(players[id]){
+			players[id].playVideo();
+			$front.find('.video').show();
+			$front.find('.play').hide();
+		}
+	});
 /*	//init vars
 	var time = 5000,
 		timeId = null,
@@ -113,3 +145,34 @@
 	$navBlock.css({marginTop: ($doc.height() - $navBlock.height()) / 2});*/
 
 })(jQuery);
+
+//youtube video
+var players = [];
+
+function onYouTubeIframeAPIReady() {
+	console.log('as');
+
+	jQuery('.play').each(function(){
+		var $this = jQuery(this),
+			id = $this.data('id'),
+			videoid = $this.data('videoid'),
+			dH = jQuery(document).height();
+
+		var main_page_w = jQuery('.main-page').width(),
+			navH = jQuery('.main-page-nav').height();
+
+		players[id] = new YT.Player('video-' + id, {
+			height: dH - navH,
+			width: main_page_w,
+			videoId: videoid,
+			events: {
+				'onReady': onPlayerReady
+				// 'onStateChange': onPlayerStateChange
+			}
+		});
+	});
+}
+
+function onPlayerReady(event) {
+	//event.target.playVideo();
+}

@@ -13,6 +13,16 @@
 	<?php echo $form->hiddenField($model,'video_id',array('class'=>'vid')); ?>
 	<?php echo $form->hiddenField($model,'video_image',array('class'=>'preview')); ?>
 
+	<div class='control-group'>
+        <?php echo CHtml::activeLabelEx($model, 'img_video'); ?>
+        <?php echo $form->fileField($model,'img_video', array('class'=>'span3')); ?>
+        <div class='img_preview'>
+            <?php if ( !empty($model->img_video) ) echo TbHtml::imageRounded( $model->imgBehaviorVideo->getImageUrl('small') ) ; ?>
+            <span class='deletePhoto btn btn-danger btn-mini' data-modelname='Video' data-attributename='Video' <?php if(empty($model->img_video)) echo "style='display:none;'"; ?>><i class='icon-remove icon-white'></i></span>
+        </div>
+        <?php echo $form->error($model, 'img_video'); ?>
+    </div>
+
 	<?php echo $form->textAreaControlGroup($model,'desc',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
 	<?php echo $form->dropDownListControlGroup($model, 'on_main', array(0 => 'Нет', 1 => 'Да'), array('class'=>'span8', 'displaySize'=>1)); ?>
