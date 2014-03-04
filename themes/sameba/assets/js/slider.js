@@ -24,7 +24,7 @@
 
 		if(players.length){
 			for(p in players){
-				players[p].pauseVideo();
+				players[p].video.pauseVideo();
 			}
 			$fronts.find('.video').hide();
 			$fronts.find('.play').show();
@@ -37,10 +37,14 @@
 			id = $this.data('id'),
 			$front = $this.closest('.front-block');
 
-		if(players[id]){
-			players[id].playVideo();
-			$front.find('.video').show();
-			$front.find('.play').hide();
+		if(players.length){
+			for(i in players){
+				if(players[i].id == id){
+					players[i].video.playVideo();
+					$front.find('.video').show();
+					$front.find('.play').hide();
+				}
+			}
 		}
 	});
 /*	//init vars
@@ -161,7 +165,7 @@ function onYouTubeIframeAPIReady() {
 		var main_page_w = jQuery('.main-page').width(),
 			navH = jQuery('.main-page-nav').height();
 
-		players[id] = new YT.Player('video-' + id, {
+		players.push({id: id, video: new YT.Player('video-' + id, {
 			height: dH - navH,
 			width: main_page_w,
 			videoId: videoid,
@@ -169,7 +173,7 @@ function onYouTubeIframeAPIReady() {
 				'onReady': onPlayerReady
 				// 'onStateChange': onPlayerStateChange
 			}
-		});
+		})});
 	});
 }
 
