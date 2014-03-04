@@ -26,7 +26,7 @@
 		if(players.length){
 			for(p in players){
 				if(players[p].ready)
-					players[p].video.stopVideo();
+					players[p].video.pauseVideo();
 			}
 			$fronts.find('.video').hide();
 			$fronts.find('.play').show();
