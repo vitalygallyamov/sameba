@@ -73,9 +73,9 @@ return array(
             'rules'=>array(
                 'gii'=>'gii',
                 'admin'=>'admin/start/index',
-                'pages/<alias:[-_a-z]+|\d+>'=>'pages/view',
-                'catalog/<category:[-_a-z]+>/<alias:[-_a-z]+|\d+>'=>'catalog/view',
-                'catalog/<category:[-_a-z]+>'=>'catalog/view',
+                'pages/<alias:[-_a-z0-9]+|\d+>'=>'pages/view',
+                'catalog/<category:[-_a-z0-9]+>/<alias:[-_a-z0-9]+|\d+>'=>'catalog/view',
+                'catalog/<category:[-_a-z0-9]+>'=>'catalog/view',
                 '<controller:\w+>'=>'<controller>/index',
                 '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
