@@ -196,5 +196,5 @@ function onPlayerReady(event) {
 			players[i].ready = true;
 	}
 
-	event.target.playVideo();
+	//event.target.playVideo();
 }
