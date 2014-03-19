@@ -6,7 +6,7 @@
 	<?php 
 	//echo $form->dropDownListControlGroup($model,'parent',); ?>
 
-	<?php echo $form->dropDownListControlGroup($model,'video_id', array_merge(array('' => 'Нет'), CHtml::listData(Video::model()->findAll(), 'id', 'name')), array('class' => 'span8')); ?>
+	<?php echo $form->dropDownListControlGroup($model,'video_id', array('' => 'Нет') + CHtml::listData(Video::model()->findAll(), 'id', 'name'), array('class' => 'span8')); ?>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', Categories::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
 	<script>

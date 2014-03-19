@@ -277,6 +277,7 @@ a, a:hover{
 	width: 20px;
 	height: 20px;
 	display: inline-block;
+	margin-bottom: -5px;
 }
 .phone i{
 	background: no-repeat 0 0 url('../img/red_icons.png');
@@ -374,11 +375,18 @@ a, a:hover{
 .address{
 	color: #fff;
 	padding-bottom: 5px;
+	margin-top: 10px;
 }
 .address i{
 	background: no-repeat -20px 0 url('../img/red_icons.png');
 }
-
+.address a{
+	color: #fff;
+	padding: 0;
+}
+.address a:hover{
+	color: #fff;
+}
 /*catalog*/
 
 .catalog, .catalog.item, .page{
@@ -545,6 +553,9 @@ a, a:hover{
 	font-family: "robotolight";
 	color: #a9a9a9;
 	margin: 3px 0;
+}
+.item-info .param a{
+	text-decoration: none;
 }
 .item-info .param span{
 	color: #5b5b5b;

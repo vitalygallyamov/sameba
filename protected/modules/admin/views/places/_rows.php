@@ -4,6 +4,7 @@ $cs = Yii::app()->clientScript;
 $cs->registerScriptFile('http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU', CClientScript::POS_HEAD);
 ?>
 	<?php echo $form->textFieldControlGroup($model,'name',array('class'=>'span8','maxlength'=>255)); ?>
+	<?php echo $form->dropDownListControlGroup($model,'on_main',array(0 => 'Нет', 1 => 'Да')); ?>
 
 	<?php echo $form->hiddenField($model,'coords',array('class'=>'coords')); ?>
 	<div class="control-group">

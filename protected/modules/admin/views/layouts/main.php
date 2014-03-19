@@ -21,6 +21,7 @@
 				array('label'=>'Категории', 'url'=>'/admin/categories'),
 				array('label'=>'Видео', 'url'=>'/admin/video'),
 				array('label'=>'Магазины', 'url'=>'/admin/places'),
+				array('label'=>'Контакты', 'url'=>'/admin/contacts/update/id/1'),
 				// array('label'=>'Разделы', 'url'=>'#', 'items' => array(
 					// array('label'=>'Пример', 'url'=>'#', 'items' => array(
 					// 	array('label'=>'Создать', 'url'=>"/admin/brands/create"),

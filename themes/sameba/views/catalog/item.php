@@ -47,7 +47,7 @@ $count = 0;
                 <div class="param line">
                     <span>Где купить:</span>
                     <?foreach ($model->getPlaces() as $place):?>
-                        <span class="span place"><i></i> <?=CHtml::encode($place->name)?></span>
+                        <a href="/contacts/<?=$place->id?>"><span class="span place"><i></i> <?=CHtml::encode($place->name)?></span></a>
                     <?endforeach;?>
                 </div>
                 <?endif;?>

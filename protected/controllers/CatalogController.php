@@ -29,8 +29,22 @@ class CatalogController extends FrontController
 	//view all catalog or one item from catalog
 	public function actionView($category, $alias='')
 	{
-		$data = Catalog::model()->published()->findAll();
 		$cat = Categories::model()->published()->find('alias=:alias', array(':alias' => $category));
+
+		$ids = array();
+		if($cat->parent == 0){
+			$ids[] = $cat->id;
+			foreach ($cat->children as $child) {
+				$ids[] = $child->id;
+			}
+
+			$criteria = new CDbCriteria;
+			$criteria->addInCondition('category_id', $ids);
+
+			$data = Catalog::model()->published()->findAll($criteria);
+		}else
+			$data = $cat->goods;
+		
 
 		if(!$cat)
 			throw new CHttpException(404,'Страница не найдена');

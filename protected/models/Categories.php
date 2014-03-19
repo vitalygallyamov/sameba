@@ -42,7 +42,8 @@ class Categories extends EActiveRecord
         return array(
             'cat_parent' => array(self::BELONGS_TO, 'Categories', 'parent'),
             'children' => array(self::HAS_MANY, 'Categories', 'parent'),
-            'video' => array(self::BELONGS_TO, 'Video', 'video_id')
+            'video' => array(self::BELONGS_TO, 'Video', 'video_id'),
+            'goods' => array(self::HAS_MANY, 'Catalog', 'category_id'),
         );
     }
 

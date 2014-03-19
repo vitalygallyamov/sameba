@@ -32,7 +32,17 @@
 			});
 		});
 
+		var startPlace = $('.places').data('begin');
 		var beginCoord = $('.places a').eq(0).data('coords');
+
+		if(startPlace){
+			$item = $('a[data-id='+startPlace+']');
+			beginCoord = $item.data('coords');
+
+			$item.closest('.places').find('.active').removeClass('active').find('span').remove();
+			$item.addClass('active').append('<span class="arr"></span>');
+		}
+		
 		myMap.setCenter(beginCoord);
 
 		$('.places a').on('click', function(){
@@ -48,6 +58,10 @@
 				checkZoomRange: 1
 			});
 		});
+		var info = jQuery('.contacts .info');
+		var top_offset = info.outerHeight() + info.offset().top + 50;
+
+		jQuery('.places').css({top: top_offset});
 		// или myCollection = new ymaps.GeoObjectArray(...);
 
 		for (var i = 0; i < coords.length; i++) {

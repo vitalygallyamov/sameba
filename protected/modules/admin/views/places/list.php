@@ -20,6 +20,10 @@ $this->menu=array(
 		'name',
 		'coords',
 		array(
+			'name' => 'on_main',
+			'value' => '$data->on_main ? "Да" : "Нет"'
+		),
+		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
 	),

@@ -31,7 +31,7 @@
 			 </div>
             <div class="nav-container">
                 <div class="logo"><a href="/"><img src="<?=$this->getAssetsUrl()?>/img/logo.png" alt=" " ></a></div>
-                <span class="phone"><i class="red-icon"></i> <?=Settings::getValue('phone')?></span>
+                <span class="phone"><i class="red-icon"></i> <?=Phones::getPhone()?></span>
                 <nav>
                     <?php if(!empty($this->clips['categories'])) echo $this->clips['categories']; ?>
                 </nav>
@@ -39,7 +39,10 @@
                 <nav class="right-menu">
                     <?php if(!empty($this->clips['main'])) echo $this->clips['main']; ?>
                     <div class="address">
-                        <i class="red-icon"></i> Ветеранов труда, 34 "Б", стр. 7
+                    	<? $place = Places::getMain(); ?>
+                    	<?if($place):?>
+                    		<a href="/contacts/<?=$place->id?>"><i class="red-icon"></i> <?=$place->name?></a>
+                        <?endif;?>
                     </div>
                 </nav>
             </div>

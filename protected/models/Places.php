@@ -20,7 +20,7 @@ class Places extends EActiveRecord
     {
         return array(
             array('name', 'required'),
-            array('sort', 'numerical', 'integerOnly'=>true),
+            array('sort, on_main', 'numerical', 'integerOnly'=>true),
             array('name, coords', 'length', 'max'=>255),
             // The following rule is used by search().
             array('id, name, coords, sort', 'safe', 'on'=>'search'),
@@ -51,7 +51,8 @@ class Places extends EActiveRecord
             'id' => 'ID',
             'name' => 'Название',
             'coords' => 'Координаты',
-            'sort' => 'Вес для сортировки'
+            'sort' => 'Вес для сортировки',
+            'on_main' => 'На главной'
         );
     }
 
@@ -62,7 +63,8 @@ class Places extends EActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
         $criteria->compare('coords',$this->coords,true);
-		$criteria->compare('coords',$this->sort);
+        $criteria->compare('coords',$this->sort);
+		$criteria->compare('on_main',$this->sort);
         $criteria->order='sort';
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
@@ -90,5 +92,18 @@ class Places extends EActiveRecord
         }
 
         return $data;
+    }
+
+    public static function getMain(){
+        return self::model()->find('on_main=1');
+    }
+
+    public function beforeSave(){
+
+        if($this->on_main == 1){
+            self::model()->updateAll(array('on_main' => 0));
+        }
+
+        return parent::beforeSave();
     }
 }
