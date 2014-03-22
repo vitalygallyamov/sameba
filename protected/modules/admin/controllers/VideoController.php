@@ -33,6 +33,9 @@ class VideoController extends AdminController
 		$desc = $group->description;//$desc: The video description
 		$vid_keywords = $group->keywords;//$vid_keywords: The video keywords
 		$thumb = $group->thumbnail[2];//There are 4 thumbnails, the first one (index 0) is the largest.
+
+		list($favoriteCount, $viewCount) = $xml->children('yt', true)->statistics->attributes();
+
 		//$thumb_url: the url of the thumbnail. $thumb_width: thumbnail width in pixels.
 		//$thumb_height: thumbnail height in pixels. $thumb_time: thumbnail time in the video
 		list($thumb_url, $thumb_width, $thumb_height, $thumb_time) = $thumb->attributes();
@@ -53,6 +56,7 @@ class VideoController extends AdminController
 		$video['thumbnail_height'] = $thumb_height.'';
 		$video['thumbnail_time'] = $thumb_time.'';
 		$video['video_duration'] = $vid_duration.'';
+		$video['video_count'] = $viewCount.'';
 
 		$this->renderPartial('_video', array('video' => $video));
 

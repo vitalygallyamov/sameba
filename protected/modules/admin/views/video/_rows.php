@@ -12,6 +12,7 @@
 
 	<?php echo $form->hiddenField($model,'video_id',array('class'=>'vid')); ?>
 	<?php echo $form->hiddenField($model,'video_image',array('class'=>'preview')); ?>
+	<?php echo $form->hiddenField($model,'rating',array('class'=>'rating')); ?>
 
 	<div class='control-group'>
         <?php echo CHtml::activeLabelEx($model, 'img_video'); ?>
@@ -61,6 +62,8 @@
 							var preview = $video.find('.media-object'),
 								title = $video.find('.media-heading');
 							jQuery('.preview').val(preview.attr('src'));
+							jQuery('.rating').val(jQuery('.media-list').data('rating'));
+							//media-list
 							//set title
 							if(jQuery('.video-title').val() == ''){
 								jQuery('.video-title').val(title.text());

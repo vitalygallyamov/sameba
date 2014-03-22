@@ -698,3 +698,6 @@ a, a:hover{
 	right: -14px;
 	top: 0;
 }
+.fancybox-type-iframe .fancybox-inner{
+	overflow: auto !important;
+}

@@ -38,7 +38,7 @@ class VideoController extends FrontController
 					$criteria->order = 'create_time DESC';
 					break;
 				case 'popular':
-					// $criteria->order = ?
+					$criteria->order = 'rating DESC';
 					break;
 				case 'all' :
 					$criteria->order = 'sort';

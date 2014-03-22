@@ -26,11 +26,11 @@ class Video extends EActiveRecord
     {
         return array(
             array('video_id', 'required'),
-            array('status, sort, on_main', 'numerical', 'integerOnly'=>true),
+            array('status, sort, on_main, rating', 'numerical', 'integerOnly'=>true),
             array('name, video_id, video_image, url, img_video', 'length', 'max'=>255),
             array('desc, create_time, update_time', 'safe'),
             // The following rule is used by search().
-            array('id, name, video_id, desc, video_image, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
+            array('id, name, video_id, desc, video_image, status, sort, rating, create_time, update_time', 'safe', 'on'=>'search'),
         );
     }
 
@@ -61,6 +61,7 @@ class Video extends EActiveRecord
             'url' => 'Ссылка',
             'status' => 'Статус',
             'sort' => 'Вес для сортировки',
+            'rating' => 'Рейтинг',
             'on_main' => 'Показывать на главной',
             'img_video' => 'Обложка',
             'create_time' => 'Дата создания',
