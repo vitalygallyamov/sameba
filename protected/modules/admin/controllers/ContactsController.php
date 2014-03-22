@@ -28,11 +28,10 @@ class ContactsController extends AdminController
 			if(isset($_POST['Socials']) && !empty($_POST['Socials'])){
 				
 				foreach ($_POST['Socials'] as $k => $soc) {
-					$soc_model = new Socials;
-					if(isset($soc['id']) && !empty($soc['id'])) $soc_model = Socials::model()->findByPk($soc['id']);
+					$soc_model = Socials::model()->findByPk($soc['id']);
 
 					$soc_model->attributes = $soc;
-					$soc_model->save();
+					$soc_model->save(false);
 				}
 			}
 
