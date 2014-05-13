@@ -3,7 +3,7 @@
 
 	$cs->registerCssFile($this->getAssetsUrl().'/css/bootstrap.min.css');
 	$cs->registerCssFile($this->getAssetsUrl().'/css/bootstrap-theme.min.css');
-	$cs->registerCssFile($this->getAssetsUrl().'/css/main.css');
+	$cs->registerCssFile($this->getAssetsUrl().'/css/main.css?v=1');
 	//$cs->registerCssFile($this->getAssetsUrl().'/css/fancybox/jquery.fancybox-buttons.css');
 	
 	$cs->registerCoreScript('jquery');

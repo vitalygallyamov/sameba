@@ -11,18 +11,27 @@ $this->menu=array(
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'type'=>TbHtml::GRID_TYPE_HOVER,
-    'afterAjaxUpdate'=>"function() {sortGrid('catalog')}",
+    'afterAjaxUpdate'=>"function() {sortGrid('catalog'); $('.make-switch')['bootstrapSwitch'](); }",
     'rowHtmlOptionsExpression'=>'array(
         "id"=>"items[]_".$data->id,
         "class"=>"status_".(isset($data->status) ? $data->status : ""),
     )',
 	'columns'=>array(
 		'name',
-		'alias',
+		// 'alias',
 		// 'gllr_gallery',
-		'category_id',
+		array(
+			'name' => 'category_id',
+			'type' => 'raw',
+			'value' => '$data->category ? $data->category->name : "Не установлена"',
+			'filter' => Categories::allCategories()
+		),
 		'art_id',
-		'price',
+		array(
+			'name' => 'price',
+			'type' => 'raw',
+			'value' => 'number_format($data->price, 0, " ", "")." руб."'
+		),
 		// 'seo_id',
 		'period',
 		array(
