@@ -564,11 +564,17 @@ a, a:hover{
 	font-size: 25px;
 	font-family: "robotothin";
 }
-.item-info .desc, .page .desc{
+.item-info .desc{
 	margin-top: 15px;
 	font-size: 16px;
 	font-family: "robotothin";
 	color: #a9a9a9;
+}
+.page .desc{
+	font-size: 16px;
+	font-family: "robotothin";
+	color: #a9a9a9;
+	height: 90%;
 }
 .item-info .desc strong{
 	color: #fff;
