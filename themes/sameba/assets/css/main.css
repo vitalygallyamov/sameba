@@ -27,24 +27,21 @@ html, body {
 a, a:hover{
 	color: #fff;
 }
-.main-block{
-	height: 100%;
-	min-width: 1000px;
-}
-.content-container, .nav-container{
-	float: left;
-	height: 100%;
-}
 .nav-container{
-	width: 22.142857%;
 	background-color: #161616;
 	text-align: center;
 	position: relative;
 	z-index: 20;
+	padding: 0;
 }
 .content-container{
-	width: 77.857142%;
+	padding: 0;
+	/*width: 77.857142%;*/
 	/*background: no-repeat center url('http://placehold.it/1500');*/
+}
+.home-page{
+	height: 100%;
+	margin: 0;
 }
 
 /*main page*/
@@ -57,16 +54,14 @@ a, a:hover{
 
 .main-page-nav{
 	width: 100%;
-	height: 100px;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	background-color: rgba(4,4,4, 0.6);
+	margin: 0;
+	background-color: rgb(4,4,4);
+	max-height: 200px;
+	overflow: hidden;
 }
 .main-page-nav .item{
-	width: 16.66363%;
-	height: 100%;
-	float: left;
+	height: 100px;
+	margin: 0;
 	cursor: pointer;
 	position: relative;
 	overflow: hidden;
@@ -101,9 +96,10 @@ a, a:hover{
 	background: no-repeat 95% center url('../img/video_icon.png');
 }
 .front-block{
-	height: 100%;
+	min-height: 500px;
 	background-size: cover;
 	position: relative;
+	padding-top: 10px;
 }
 .front-block .video{
 	display: none;
@@ -120,11 +116,9 @@ a, a:hover{
 .front-block .product-info{
 	background: #121212;
 	background: rgba(18, 18, 18, 0.9);
-	width: 380px;
-	position: absolute;
-	top: 20px;
-	left: 20px;
 	padding: 15px;
+	margin: 0 auto;
+	width: 90%;
 }
 .product-info h1{
 	font-family: "robotolight";
@@ -155,6 +149,9 @@ a, a:hover{
 	text-decoration: none;
 	margin-top: 20px;
 	display: inline-block;
+}
+.catalog.item .row{
+	margin: 0;
 }
 /* slider 
 
@@ -266,7 +263,7 @@ a, a:hover{
 /*nav-side*/
 .logo{
 	text-align: center;
-	margin: 20px 0 15px 0;
+	padding: 20px 0 15px 0;
 }
 .phone{
 	font-family: 'robotothin';
@@ -300,7 +297,7 @@ a, a:hover{
 	/*padding: 0 15px 0;*/
 }
 .categories .sub{
-	background: no-repeat 10px center url('../img/menu_arrow.png');
+	/*background: no-repeat 10px center url('../img/menu_arrow.png');*/
 	position: relative;
 }
 .categories .root > a{
@@ -314,21 +311,17 @@ a, a:hover{
 	background-color: #e3000f;
 }
 .categories .sub > a:hover{
-	background: no-repeat #e3000f 10px center url('../img/menu_arrow.png');
+	/*background: no-repeat #e3000f 10px center url('../img/menu_arrow.png');*/
 	/*background-color: #e3000f;*/
 }
 
 .sub-categories{
-	display: none;
 	background: #272727;
 	background: rgba(39, 39, 39, 0.9);
 	list-style: none;
-	position: absolute;
-	top: 0;
-	left: 0;
 	margin: 0;
 	padding: 0;
-	max-width: 200px;
+	width: 100%;
 }
 
 .sub-categories a{
@@ -356,7 +349,6 @@ a, a:hover{
 	width: 100%;
 	font-family: 'robotothin';
 	font-size: 14px;
-	margin-bottom: 20px;
 }
 .right-menu ul{
 	list-style: none;
@@ -390,9 +382,8 @@ a, a:hover{
 /*catalog*/
 
 .catalog, .catalog.item, .page{
-	height: 100%;
 	background-color: #1d1d1d;
-	padding: 20px 10px 0 30px;
+	padding: 20px 10px;
 }
 .catalog h1, .page h1{
 	margin-top: 0;
@@ -443,13 +434,16 @@ a, a:hover{
 .catalog-items{
 	font-family: "robotothin";
 	height: 100%;
-	overflow-y: scroll;
+	overflow: auto;
 	/*width: 500px !important;*/
 	position: relative;
 }
 .catalog-items .row{
-	margin-bottom: 20px;
+	margin: 0 0 20px 0;
 	width: 100%;
+}
+.catalog-items .col-sm-4{
+	margin-bottom: 20px;
 }
 .catalog-items .desc{
 	font-size: 16px;
@@ -503,7 +497,9 @@ a, a:hover{
 		background-size: 26px 26px; /*The size of the normal image, half the size of the hi-res image*/
 	}
 }
-
+.photos{
+	padding: 0;
+}
 /*catalog item*/
 .photos img{
 	width: 100%;
@@ -521,12 +517,12 @@ a, a:hover{
 }
 .item-wrap{
 	height: 97%;
+	padding: 0;
 	overflow: hidden;
-	border-left: 2px solid #2e2e2e;
 }
 .item-info{
 	height: 100%;
-	overflow-y: scroll;
+	overflow: auto;
 }
 .item-info .back{
 	padding-bottom: 30px;
@@ -606,7 +602,7 @@ a, a:hover{
 /*contacts*/
 
 .contacts, .map{
-	height: 100%;
+	min-height: 600px;
 }
 
 .contacts{
@@ -672,12 +668,8 @@ a, a:hover{
 
 .contacts .places{
 	list-style: none;
-	margin: 0;
 	padding: 0;
 	background-color: #181818;
-	position: absolute;
-	top: 350px;
-	left: 30px;
 }
 .contacts .places a{
 	display: block;
@@ -706,4 +698,72 @@ a, a:hover{
 }
 .fancybox-type-iframe .fancybox-inner{
 	overflow: auto !important;
+}
+
+@media (min-width: 768px){
+	.catalog, .catalog.item, .page{
+		height: 100%;
+	}
+	.content-container, .nav-container, .front-block{
+		/*float: left;*/
+
+		height: 100%;
+	}
+	.right-menu{
+		margin-bottom: 20px;
+	}
+	.front-block .product-info{
+		width: 380px;
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		margin: 0;
+	}
+	.main-page-nav{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background-color: rgba(4,4,4, 0.6);
+	}
+	.sub-categories{
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+		max-width: 200px;
+		width: auto;
+	}
+	.catalog-items, .item-info{
+		overflow-y: scroll;
+	}
+	.catalog-items .col-sm-4{
+		margin-bottom: 0;
+		padding-left: 5px;
+	}
+	.item-wrap{
+		padding: 0 15px;
+		border-left: 2px solid #2e2e2e;
+	}
+
+	.catalog, .catalog.item, .page{
+		padding: 20px 10px 0 30px;
+	}
+	.photos{
+		padding: 0 15px 0 0;
+	}
+	.categories .sub{
+		background: no-repeat 10px center url('../img/menu_arrow.png');
+	}
+	.categories .sub > a:hover{
+		background: no-repeat #e3000f 10px center url('../img/menu_arrow.png');
+		/*background-color: #e3000f;*/
+	}
+	.contacts, .map{
+		height: 100%;
+	}
+	.contacts .places{
+		position: absolute;
+		top: 350px;
+		left: 30px;
+	}
 }

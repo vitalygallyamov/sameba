@@ -45,7 +45,9 @@
 		
 		myMap.setCenter(beginCoord);
 
-		$('.places a').on('click', function(){
+		$('.places a').on('click', function(e){
+			e.preventDefault();
+
 			var $this = $(this);
 			var coords = $this.data('coords');
 
@@ -59,10 +61,18 @@
 			});
 		});
 		var info = jQuery('.contacts .info');
-		var top_offset = info.outerHeight() + info.offset().top + 50;
-
-		jQuery('.places').css({top: top_offset});
+		
+		var init = function init(){
+			var top_offset = info.outerHeight() + info.offset().top + 50;
+			jQuery('.places').css({top: top_offset});
+		};
+		init();
 		// или myCollection = new ymaps.GeoObjectArray(...);
+
+		//resize
+		jQuery(window).resize(function(){
+			init();
+		});
 
 		for (var i = 0; i < coords.length; i++) {
 			myCollection.add(new ymaps.Placemark(coords[i]));

@@ -19,10 +19,10 @@
         </div>
         <?endif;?>
     <?endforeach;?>
-    <div class="main-page-nav">
+    <div class="main-page-nav row">
         <?foreach ($items as $key => $item):?>
             <?if($item instanceof Catalog):?>
-            <div class="item">
+            <div class="item col-sm-2 col-xs-4">
                 <img src="<?=$item->gallery->main->getUrl('mini')?>" alt="">
                 <div class="info<?=($key == 0 ? ' active' : '')?>">
                     <div class="title"><?=CHtml::encode($item->name)?></div>
@@ -30,7 +30,7 @@
             </div>
             <?endif;?>
             <?if($item instanceof Video):?>
-            <div class="item video" style="background-image: url('<?=$item->getImageUrl('mini')?>');>">
+            <div class="item video col-sm-2 col-xs-4" style="background-image: url('<?=$item->getImageUrl('mini')?>');>">
                 <div class="info<?=($key == 0 ? ' active' : '')?>">
                     <div class="title video"><?=CHtml::encode($item->name)?></div>
                 </div>

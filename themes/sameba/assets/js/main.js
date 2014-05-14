@@ -1,11 +1,21 @@
 (function ( $ ) {
 	//categories hover
-	var timeShow = null;
+	var timeShow = null,
+		windowH = jQuery(window).width();
+
+	jQuery(window).resize(function(){
+		if(jQuery(window).width() > 768 && jQuery('.scroll-pane-arrows').length){
+			$('.scroll-pane-arrows').jScrollPane({
+				showArrows: true,
+				horizontalGutter: 10
+			});
+		}
+	});
 
 	$('.categories .root').hover(function(){
 		var $this = $(this);
 
-		if($this.hasClass('sub')){
+		if(windowH > 768 && $this.hasClass('sub')){
 			var sub = $this.find('.sub-categories');
 			sub.css({
 				left: -1 * sub.width() - 20
@@ -19,7 +29,7 @@
 
 		var $this = $(this);
 
-		if($this.hasClass('sub')){
+		if(windowH > 768 && $this.hasClass('sub')){
 			console.log('out');
 			var sub = $this.find('.sub-categories');
 
@@ -32,18 +42,13 @@
 	});
 
 	$('.sub-categories').hover(function(){
-		clearTimeout(timeShow);
+		if(windowH > 768) clearTimeout(timeShow);
 	}, function(){
-		$(this).hide();
+		if(windowH > 768) $(this).hide();
 	});
 
 	//catalog custom scroll
-	if(jQuery('.scroll-pane-arrows').length){
-		$('.scroll-pane-arrows').jScrollPane({
-			showArrows: true,
-			horizontalGutter: 10
-		});
-	}
+	jQuery(window).resize();
 	
 	//bind fancybox
 	if(jQuery('.fancybox').length){

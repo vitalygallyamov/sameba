@@ -25,11 +25,8 @@
 	    <![endif]-->
 	</head>
 	<body>
-		<div class="main-block clearfix">
-            <div class="content-container">
-				<?php echo $content;?>
-			 </div>
-            <div class="nav-container">
+        <div class="row home-page">
+            <div class="col-sm-3 col-sm-push-9 nav-container">
                 <div class="logo"><a href="/"><img src="<?=$this->getAssetsUrl()?>/img/logo.png" alt=" " ></a></div>
                 <span class="phone"><i class="red-icon"></i> <?=Phones::getPhone()?></span>
                 <nav>
@@ -39,12 +36,15 @@
                 <nav class="right-menu">
                     <?php if(!empty($this->clips['main'])) echo $this->clips['main']; ?>
                     <div class="address">
-                    	<? $place = Places::getMain(); ?>
-                    	<?if($place):?>
-                    		<a href="/contacts/<?=$place->id?>"><i class="red-icon"></i> <?=$place->name?></a>
+                        <? $place = Places::getMain(); ?>
+                        <?if($place):?>
+                            <a href="/contacts/<?=$place->id?>"><i class="red-icon"></i> <?=$place->name?></a>
                         <?endif;?>
                     </div>
                 </nav>
+            </div>
+            <div class="col-sm-9 col-sm-pull-3 content-container">
+                <?php echo $content;?>
             </div>
         </div>
 	</body>
