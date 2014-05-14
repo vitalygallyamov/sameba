@@ -7,8 +7,6 @@ $cs->registerScriptFile($this->getAssetsUrl().'/js/map.js', CClientScript::POS_E
 
 ?>
 <section class="contacts" data-point-img="<?=$this->getAssetsUrl()?>/img/point.png">
-    <div id="map" class="map">
-    </div>
     <div class="info">
         <h1><?=CHtml::encode($model->title)?></h1>
 		<?foreach ($model->phones as $phone) {?>
@@ -23,6 +21,7 @@ $cs->registerScriptFile($this->getAssetsUrl().'/js/map.js', CClientScript::POS_E
             <?}?>
         </div>
     </div>
+    <div id="map" class="map"></div>
     <ul class="places"<?=isset($start_place) ? ' data-begin="'.$start_place->id.'"' : ''?>>
         <?foreach ($places as $i => $place):?>
             <li><a <?=($i == 0 ? 'class="active"' : '')?> href="#" data-id="<?=$place->id?>" data-coords="[<?=CHtml::encode($place->coords)?>]"><?=CHtml::encode($place->name)?><?=($i == 0 ? '<span class="arr"></span>' : '')?></a></li>

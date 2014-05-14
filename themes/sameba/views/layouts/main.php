@@ -19,6 +19,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title><?php echo $this->title; ?></title>
 		<!--[if IE]>
 	    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -29,7 +30,18 @@
             <div class="col-sm-3 col-sm-push-9 nav-container">
                 <div class="logo"><a href="/"><img src="<?=$this->getAssetsUrl()?>/img/logo.png" alt=" " ></a></div>
                 <span class="phone"><i class="red-icon"></i> <?=Phones::getPhone()?></span>
-                <nav>
+                <nav class="nav-categories">
+                    <div class="navbar-header">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".categories">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <!-- <a class="navbar-brand" href="#">Категории</a> -->
+                        </div>
+                    </div>
                     <?php if(!empty($this->clips['categories'])) echo $this->clips['categories']; ?>
                 </nav>
 

@@ -1,5 +1,5 @@
 <?php $this->beginClip('categories'); ?>
-<ul class="categories">
+<ul class="categories collapse">
 	<?foreach ($categories as $root) {
 		$isChildren = (boolean) $root->children;
 		$name = CHtml::encode($root->name);

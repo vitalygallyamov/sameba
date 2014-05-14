@@ -67,6 +67,7 @@ a, a:hover{
 	overflow: hidden;
 	text-align: center;
 	background-size: cover;
+	padding: 0;
 }
 .main-page-nav .info{
 	display: none;
@@ -100,6 +101,7 @@ a, a:hover{
 	background-size: cover;
 	position: relative;
 	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .front-block .video{
 	display: none;
@@ -122,14 +124,14 @@ a, a:hover{
 }
 .product-info h1{
 	font-family: "robotolight";
-	font-size: 30px;
+	font-size: 25px;
 	text-transform: uppercase;
 	padding: 0;
 	margin: 0;
 }
 .product-info .desc{
 	font-family: "robotothin";
-	font-size: 24px;
+	font-size: 20px;
 	color: #626161;
 	margin-top: 10px;
 }
@@ -138,7 +140,7 @@ a, a:hover{
 }
 .product-info .price{
 	font-family: "robotothin";
-	font-size: 24px;
+	font-size: 20px;
 }
 .product-info .view{
 	color: #e3000f;
@@ -281,7 +283,15 @@ a, a:hover{
 }
 
 /*categories*/
-
+.navbar-default{
+	background-color: #161616;
+}
+.navbar-brand{
+	font-family: robotothin;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+	background-color: #8e8d8d;
+}
 .categories{
 	margin: 20px 0;
 	border-top: 1px solid #2a2a29;
@@ -609,13 +619,10 @@ a, a:hover{
 	position: relative;
 }
 .contacts .info{
-	position: absolute;
 	font-family: "robotothin";
-	top: 30px;
-	left: 30px;
 	padding: 25px 30px;
 	background-color: #191918;
-	z-index: 20px;
+	z-index: 20;
 }
 
 .contacts .info h1{
@@ -669,6 +676,7 @@ a, a:hover{
 .contacts .places{
 	list-style: none;
 	padding: 0;
+	margin: 0;
 	background-color: #181818;
 }
 .contacts .places a{
@@ -688,7 +696,7 @@ a, a:hover{
 	background-color: #e40715;
 }
 .contacts .places .arr{
-	display: inline-block;
+	display: none;
 	width: 14px;
 	height: 44px;
 	background: no-repeat center url('../img/red_rectangle.png');
@@ -751,6 +759,9 @@ a, a:hover{
 	.photos{
 		padding: 0 15px 0 0;
 	}
+	.categories{
+		display: block;
+	}
 	.categories .sub{
 		background: no-repeat 10px center url('../img/menu_arrow.png');
 	}
@@ -764,6 +775,18 @@ a, a:hover{
 	.contacts .places{
 		position: absolute;
 		top: 350px;
+		left: 30px;
+	}
+	.product-info h1{
+		font-size: 30px;
+	}
+	.product-info .desc, .product-info .price{
+		font-size: 24px;
+	}
+	.contacts .places .arr{display: inline-block;}
+	.contacts .info{
+		position: absolute;
+		top: 30px;
 		left: 30px;
 	}
 }
