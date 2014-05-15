@@ -13,7 +13,7 @@
         </div>
         <?endif;?>
         <?if($item instanceof Video):?>
-        <div class="front-block n<=$key?>" style="background-image: url('<?=$item->getImageUrl('xbig')?>');<?=($key != 0 ? ' display: none;' : '')?>">
+        <div class="front-block front-video n<=$key?>" style="background-image: url('<?=$item->getImageUrl('xbig')?>');<?=($key != 0 ? ' display: none;' : '')?>">
             <div class="video"><div id="video-<?=$item->video_id?>"></div></div>
             <div class="play" data-id="<?=$item->id?>" data-videoid="<?=$item->video_id?>"></div>
         </div>

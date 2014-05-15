@@ -103,8 +103,16 @@ a, a:hover{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+.front-video{
+	padding: 0;
+}
 .front-block .video{
 	display: none;
+	/*height: 500px;*/
+}
+.front-block .video iframe{
+	width: 100%;
+	/*height: 500px;*/
 }
 .front-block .play{
 	position: absolute;
@@ -707,6 +715,11 @@ a, a:hover{
 .fancybox-type-iframe .fancybox-inner{
 	overflow: auto !important;
 }
+@media (max-width: 768px){
+	.front-block .video, .front-block .video iframe{
+		height: 500px;
+	}
+}
 
 @media (min-width: 768px){
 	.catalog, .catalog.item, .page{
@@ -789,4 +802,7 @@ a, a:hover{
 		top: 30px;
 		left: 30px;
 	}
+	/* .front-block .video, .front-block .video iframe{
+		height: 100px;
+	} */
 }

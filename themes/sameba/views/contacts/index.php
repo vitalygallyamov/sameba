@@ -1,7 +1,7 @@
 <?php
 $cs = Yii::app()->clientScript;
 
-$cs->registerScriptFile('http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU', CClientScript::POS_HEAD);
+$cs->registerScriptFile('http://api-maps.yandex.ru/2.1/?lang=ru_RU', CClientScript::POS_HEAD);
 
 $cs->registerScriptFile($this->getAssetsUrl().'/js/map.js', CClientScript::POS_END);
 

@@ -8,14 +8,25 @@
 		myMap = new ymaps.Map ("map", {
 			center: [57.182631, 65.558412],
 			zoom: 13,
-			behaviors: ['default', 'scrollZoom']
+			controls: ['typeSelector']
 		});
 
-		myMap.controls.add('zoomControl', { top: 75, right: 5 });
+		var zoomControl = new ymaps.control.ZoomControl({
+			options: {
+				float: 'none',
+				position: { top: 75, right: 5 }
+			}
+		});
+
+		myMap.controls.add(zoomControl);
+
+		// var icon = jQuery('<img src="" alt="" >').attr('src', );
+		// console.log(icon);
+		var circleLayout = ymaps.templateLayoutFactory.createClass('<div class="placemark_layout_container"><div class="circle_layout"><img src="'+jQuery('.contacts').data('point-img')+'" alt=""></div></div>');
 
 		var coords = [],
 		myCollection = new ymaps.GeoObjectCollection({}, {
-			iconImageHref: jQuery('.contacts').data('point-img'),
+			iconLayout: circleLayout,
 			iconImageSize: [37, 42]
 		});
 
@@ -79,5 +90,17 @@
 		}
 
 		myMap.geoObjects.add(myCollection);
+
+		if ($(window).width() < 768 && myMap.behaviors.isEnabled('drag')) {
+			myMap.behaviors.disable('drag');
+		}else if($(window).width() >= 768 && !myMap.behaviors.isEnabled('drag'))
+			myMap.behaviors.enable('drag');
+
+		$(window).resize(function(){
+			if ($(window).width() < 768 && myMap.behaviors.isEnabled('drag')) {
+				myMap.behaviors.disable('drag');
+			}else if($(window).width() >= 768 && !myMap.behaviors.isEnabled('drag'))
+				myMap.behaviors.enable('drag');
+		});
 	}
 })(jQuery);
