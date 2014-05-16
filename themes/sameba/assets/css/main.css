@@ -108,11 +108,11 @@ a, a:hover{
 }
 .front-block .video{
 	display: none;
-	/*height: 500px;*/
+	height: 500px;
 }
 .front-block .video iframe{
 	width: 100%;
-	/*height: 500px;*/
+	height: 500px;
 }
 .front-block .play{
 	position: absolute;
@@ -278,6 +278,11 @@ a, a:hover{
 .phone{
 	font-family: 'robotothin';
 	font-size: 20px;
+	color: #8e8d8d;
+	text-decoration: none;
+}
+.phone:hover{
+	text-decoration: none;
 	color: #8e8d8d;
 }
 .red-icon{
@@ -584,6 +589,9 @@ a, a:hover{
 	font-family: "robotothin";
 	color: #a9a9a9;
 }
+.page, .row{
+	margin: 0;
+}
 .page .desc{
 	font-size: 16px;
 	font-family: "robotothin";
@@ -727,7 +735,7 @@ a, a:hover{
 	}
 	.content-container, .nav-container, .front-block{
 		/*float: left;*/
-
+		overflow: auto;
 		height: 100%;
 	}
 	.right-menu{
@@ -802,7 +810,7 @@ a, a:hover{
 		top: 30px;
 		left: 30px;
 	}
-	/* .front-block .video, .front-block .video iframe{
-		height: 100px;
-	} */
+	.front-block .video, .front-block .video iframe{
+		height: auto;
+	} 
 }

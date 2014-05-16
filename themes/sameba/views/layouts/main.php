@@ -11,6 +11,8 @@
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/vendor/bootstrap.min.js', CClientScript::POS_END);
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/main.js', CClientScript::POS_END);
 
+    $detect = Yii::app()->mobileDetect;
+
 ?><!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -29,7 +31,7 @@
         <div class="row home-page">
             <div class="col-sm-3 col-sm-push-9 nav-container">
                 <div class="logo"><a href="/"><img src="<?=$this->getAssetsUrl()?>/img/logo.png" alt=" " ></a></div>
-                <span class="phone"><i class="red-icon"></i> <?=Phones::getPhone()?></span>
+                <a href="<? echo ($detect->isMobile()) ? 'tel: '.Phones::getPhone() : '#'; ?>" class="phone"><i class="red-icon"></i> <?=Phones::getPhone()?></a>
                 <nav class="nav-categories">
                     <div class="navbar-header">
                         <div class="navbar-header">

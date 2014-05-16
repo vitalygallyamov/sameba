@@ -53,6 +53,9 @@ return array(
                 ),
             ),
         ),
+        'mobileDetect' => array(
+            'class' => 'ext.MobileDetect.MobileDetect'
+        ),
         'user'=>array(
             'class' => 'user.components.WebUser',
         ),
