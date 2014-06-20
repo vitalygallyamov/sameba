@@ -33,7 +33,7 @@ class Catalog extends EActiveRecord
     {
         return array(
             array('gllr_gallery, category_id, seo_id, period, status, sort, on_main', 'numerical', 'integerOnly'=>true),
-            array('name, alias, art_id, materials, places', 'length', 'max'=>255),
+            array('name, alias, art_id, materials, places, price_desc', 'length', 'max'=>255),
             array('price', 'length', 'max'=>10),
             array('wswg_desc, create_time, update_time', 'safe'),
             // The following rule is used by search().
@@ -79,6 +79,7 @@ class Catalog extends EActiveRecord
             'on_main' => 'Показывать на главной',
             'create_time' => 'Дата создания',
             'update_time' => 'Дата последнего редактирования',
+            'price_desc' => 'Услуга'
         );
     }
 

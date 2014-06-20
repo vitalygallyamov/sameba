@@ -18,7 +18,8 @@
 
 	<?php echo $form->textFieldControlGroup($model,'art_id',array('class'=>'span8','maxlength'=>255)); ?>
 
-	<?php echo $form->textFieldControlGroup($model,'price',array('class'=>'span8','maxlength'=>10)); ?>
+	<?php //echo $form->textFieldControlGroup($model,'price',array('class'=>'span8','maxlength'=>10)); ?>
+	<?php echo $form->textFieldControlGroup($model,'price_desc',array('class'=>'span8','maxlength'=>255)); ?>
 
 	<div class='control-group'>
 		<?php echo CHtml::activeLabelEx($model, 'wswg_desc'); ?>

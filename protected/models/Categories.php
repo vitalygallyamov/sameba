@@ -110,7 +110,7 @@ class Categories extends EActiveRecord
         return 'Категории';
     }
 
-    public static function allCategories($categories = array(), &$result = array()){
+    public static function allCategories($categories = array(), &$result = array(), $withEmpty = false){
 
         $categories = ( $categories ? $categories : self::model()->findAll('parent=0') );
 
@@ -125,7 +125,10 @@ class Categories extends EActiveRecord
                 self::allCategories($item->children, $result);
         }
 
-        return array_merge(array(0 => 'Нет'), $result);
+        if($withEmpty)
+            $result = array_merge(array(0 => 'Нет'), $result);
+
+        return $result;
     }
 
     public function beforeSave(){

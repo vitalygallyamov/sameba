@@ -15,7 +15,7 @@
                 <a href="<?=$this->createUrl('view', array('category' => $category->alias, 'alias' => $item->alias))?>" class="view"></a>
                 <div class="id"><?=CHtml::encode($item->art_id)?></div>
                 <div class="title"><?=CHtml::encode($item->name)?></div>
-                <div class="price">от <?=CHtml::encode(number_format($item->price,0,'',' '))?> руб.</div>
+                <?/*<div class="price">от <?=CHtml::encode(number_format($item->price,0,'',' '))?> руб.</div>*/?>
             </div>
         </div>
     <?  $count++;

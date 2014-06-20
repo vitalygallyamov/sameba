@@ -7,7 +7,7 @@
                 <div class="desc">
                     <?=$item->wswg_desc?>
                 </div>
-                <div class="price">От <?=CHtml::encode(number_format($item->price, 0, '', ' '))?> руб.</div>
+                <?/*<div class="price">От <?=CHtml::encode(number_format($item->price, 0, '', ' '))?> руб.</div>*/?>
                 <a href="<?=Yii::app()->createUrl('catalog/view', array('category' => $item->category->alias, 'alias' => $item->alias))?>" class="view">подробнее</a>
             </div>
         </div>

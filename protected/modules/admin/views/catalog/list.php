@@ -27,11 +27,12 @@ $this->menu=array(
 			'filter' => Categories::allCategories()
 		),
 		'art_id',
-		array(
+		'price_desc',
+		/*array(
 			'name' => 'price',
 			'type' => 'raw',
 			'value' => 'number_format($data->price, 0, " ", "")." руб."'
-		),
+		),*/
 		// 'seo_id',
 		'period',
 		array(

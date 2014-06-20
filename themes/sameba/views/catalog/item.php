@@ -34,11 +34,17 @@ $count = 0;
                 </div>
                 <h1><?=CHtml::encode($model->name)?></h1>
                 <div class="param"><span>Артикул:</span> <?=CHtml::encode($model->art_id)?></div>
-                <div class="price">Цена от: <strong><?=CHtml::encode(number_format($model->price, 0, '',' '))?> руб</strong>.</div>
+                <?/*<div class="price">Цена от: <strong><?=CHtml::encode(number_format($model->price, 0, '',' '))?> руб</strong>.</div>*/?>
+                <?if($model->price_desc):?>
+                <div class="desc line">
+                    <?=$model->price_desc?>
+                </div>
+                <?endif;?>
+                <?if($model->wswg_desc):?>
                 <div class="desc line">
                     <?=$model->wswg_desc?>
                 </div>
-                
+                <?endif;?>
                 <?if($model->getMaterials()):?>
                 <div class="param line"><span>Список материалов:</span> <?=implode(', ', CHtml::listData($model->getMaterials(), 'id', 'name'))?>.</div>
                 <?endif;?>
@@ -53,7 +59,8 @@ $count = 0;
                 <?endif;?>
                
                 <?if($model->period):?>
-                <div class="param line"><span>Срок изготовления:</span> <?=Yii::t('app', '{n} день|{n} дня|{n} дней', $model->period);?>.</div>
+                <?/*<div class="param line"><span>Срок изготовления:</span> <?=Yii::t('app', '{n} день|{n} дня|{n} дней', $model->period);?>.</div>*/?>
+                <div class="param line"><span>Срок изготовления:</span> <?=CHtml::encode($model->period)?></div>
                 <?endif;?>
             </div>
         </div>
