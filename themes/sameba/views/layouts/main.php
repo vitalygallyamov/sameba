@@ -49,10 +49,10 @@
                 <nav class="right-menu">
                     <?php if(!empty($this->clips['main'])) echo $this->clips['main']; ?>
                     <div class="address">
-                        <? $place = Places::getMain(); ?>
-                        <?if($place):?>
+                        <? $places = Places::getAllOnMain(); ?>
+                        <?foreach ($places as $place):?>
                             <a href="/contacts/<?=$place->id?>"><i class="red-icon"></i> <?=$place->name?></a>
-                        <?endif;?>
+                        <?endforeach;?>
                     </div>
                 </nav>
             </div>

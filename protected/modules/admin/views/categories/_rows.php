@@ -2,7 +2,7 @@
 
 	<?php echo $form->textFieldControlGroup($model,'alias',array('class'=>'span8 alias','maxlength'=>255)); ?>
 
-	<?php echo $form->dropDownListControlGroup($model,'parent', Categories::allCategories()); ?>
+	<?php echo $form->dropDownListControlGroup($model,'parent', array_merge(array(0 => 'Нет'), Categories::allCategories())); ?>
 	<?php 
 	//echo $form->dropDownListControlGroup($model,'parent',); ?>
 

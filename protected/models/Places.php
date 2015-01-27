@@ -30,6 +30,9 @@ class Places extends EActiveRecord
     public function scopes()
     {
         return array(
+            'bySort' => array(
+                'order'=>'sort'
+            ),
             'withCoords'=>array(
                 'condition'=>'coords!=""',
                 'order'=>'sort'
@@ -94,15 +97,15 @@ class Places extends EActiveRecord
         return $data;
     }
 
-    public static function getMain(){
-        return self::model()->find('on_main=1');
+    public static function getAllOnMain(){
+        return self::model()->bySort()->findAll('on_main=1');
     }
 
     public function beforeSave(){
 
-        if($this->on_main == 1){
+        /*if($this->on_main == 1){
             self::model()->updateAll(array('on_main' => 0));
-        }
+        }*/
 
         return parent::beforeSave();
     }

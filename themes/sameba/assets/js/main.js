@@ -16,15 +16,17 @@
 		windowW = $(window).width();
 		changeNavBar();
 
-		if(windowW > 768) $('.nav-categories').removeClass('navbar-default');
-		else $('.nav-categories').addClass('navbar-default');
+		setTimeout(function(){
+			if(windowW > 768) $('.nav-categories').removeClass('navbar-default');
+			else $('.nav-categories').addClass('navbar-default');
 
-		if(windowW > 768 && $('.scroll-pane-arrows').length){
-			$('.scroll-pane-arrows').jScrollPane({
-				showArrows: true,
-				horizontalGutter: 10
-			});
-		}
+			if(windowW > 768 && $('.scroll-pane-arrows').length){
+				$('.scroll-pane-arrows').jScrollPane({
+					showArrows: true,
+					horizontalGutter: 10
+				});
+			}
+		}, 500);
 	});
 
 	$('.categories .root').hover(function(){

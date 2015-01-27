@@ -35,15 +35,13 @@ $count = 0;
                 <h1><?=CHtml::encode($model->name)?></h1>
                 <div class="param"><span>Артикул:</span> <?=CHtml::encode($model->art_id)?></div>
                 <?/*<div class="price">Цена от: <strong><?=CHtml::encode(number_format($model->price, 0, '',' '))?> руб</strong>.</div>*/?>
-                <?if($model->price_desc):?>
-                <div class="desc line">
-                    <?=$model->price_desc?>
-                </div>
-                <?endif;?>
                 <?if($model->wswg_desc):?>
                 <div class="desc line">
                     <?=$model->wswg_desc?>
                 </div>
+                <?endif;?>
+                <?if($model->price_desc):?>
+                <div class="param line"><span>Услуги:</span> <?=$model->price_desc?></div>
                 <?endif;?>
                 <?if($model->getMaterials()):?>
                 <div class="param line"><span>Список материалов:</span> <?=implode(', ', CHtml::listData($model->getMaterials(), 'id', 'name'))?>.</div>
@@ -51,7 +49,7 @@ $count = 0;
                 
                 <?if($model->getPlaces()):?>
                 <div class="param line">
-                    <span>Где купить:</span>
+                    <span>Где заказать:</span>
                     <?foreach ($model->getPlaces() as $place):?>
                         <a href="/contacts/<?=$place->id?>"><span class="span place"><i></i> <?=CHtml::encode($place->name)?></span></a>
                     <?endforeach;?>

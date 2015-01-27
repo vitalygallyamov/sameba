@@ -3,13 +3,13 @@
 ?>
 <div class="row">
     <?if($category->video){?>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <a class="fancybox fancybox.iframe" href="http://www.youtube.com/embed/<?=CHtml::encode($category->video->video_id)?>"><img src="<?=CHtml::encode($category->video->video_image)?>" alt=""></a>
             <div class="desc"><a class="fancybox fancybox.iframe view" href="http://www.youtube.com/embed/<?=CHtml::encode($category->video->video_id)?>"></a><?=CHtml::encode($category->video->desc)?></div>
         </div>
     <? $count++; }?>
     <?foreach ($data as $item) {?>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <a href="<?=$this->createUrl('view', array('category' => $category->alias, 'alias' => $item->alias))?>"><img src="<?=$item->gallery->main->getUrl('middle')?>" alt=""></a>
             <div class="desc">
                 <a href="<?=$this->createUrl('view', array('category' => $category->alias, 'alias' => $item->alias))?>" class="view"></a>
@@ -19,7 +19,7 @@
             </div>
         </div>
     <?  $count++;
-        if($count % 3 === 0) echo '</div><div class="row">'; 
+        if($count % 4 === 0) echo '</div><div class="row">'; 
     }?>
 </div>
 <?/*<div class="row">

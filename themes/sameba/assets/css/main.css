@@ -487,8 +487,8 @@ a, a:hover{
 	background: #e3000f center no-repeat url('../img/view_item.png');
 }
 .catalog-items .title{
-	font-size: 16px;
-	color: #6c6c6c;
+	font-size: 18px;
+	color: #fff;
 }
 .catalog-items .price{
 	font-size: 20px;
